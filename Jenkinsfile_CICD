@@ -90,7 +90,7 @@ pipeline {
             steps {
                 script {
                     withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' my-eks22', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', serverUrl: 'https://F3212B4C5D11F57326344952ABDC8EB3.gr7.ap-south-1.eks.amazonaws.com']]) {
-                        sh 'kubectl apply -f k8s-prod/sc.yaml'
+                        sh 'kubectl -n prod apply -f k8s-prod/sc.yaml'
                         sleep 20
                         sh 'kubectl apply -f k8s-prod/mysql.yaml -n prod'
                         sh 'kubectl apply -f k8s-prod/backend.yaml -n prod'
