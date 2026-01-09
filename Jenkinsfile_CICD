@@ -68,7 +68,7 @@ pipeline {
                             sh 'docker build -t vaibhavchudari/backend:latest .'
                             sh 'trivy image --format table -o backend-image-report.html vaibhavchudari/backend:latest '
                             sh 'docker push vaibhavchudari/backend:latest'
-                           
+                            sh 'docker rmi vaibhavchudari/backend:latest'
                         }
                     }
                 }
@@ -83,6 +83,7 @@ pipeline {
                             sh 'docker build -t vaibhavchudari/frontend:latest .'
                             sh 'trivy image --format table -o frontend-image-report.html vaibhavchudari/frontend:latest '
                             sh 'docker push vaibhavchudari/frontend:latest'
+                            sh 'docker rmi vaibhavchudari/frontend:latest'
                         }
                     }
                 }
