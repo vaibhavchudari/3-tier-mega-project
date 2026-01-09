@@ -96,7 +96,7 @@ pipeline {
                         sh 'kubectl apply -f k8s-prod/backend.yaml -n prod'
                         sh 'kubectl apply -f k8s-prod/frontend.yaml -n prod'
                         sh 'kubectl apply -f k8s-prod/ci.yaml'
-                        sh 'kubectl apply -f k8s-prod/ingress.yaml -n prod'
+                       // sh 'kubectl apply -f k8s-prod/ingress.yaml -n prod'
                         sleep 30
                     }
                 }
