@@ -94,7 +94,7 @@ pipeline {
        stage('Deployment') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://AFC6FCFF5360B30D5E8950396E38A8C4.gr7.ap-south-1.eks.amazonaws.com') {
+                    withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' my-eks22', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', serverUrl: 'https://F3212B4C5D11F57326344952ABDC8EB3.gr7.ap-south-1.eks.amazonaws.com']]) {
                         sh 'kubectl apply -f k8s-prod/sc.yaml'
                         sleep 20
                         sh 'kubectl apply -f k8s-prod/mysql.yaml -n prod'
@@ -111,7 +111,7 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://AFC6FCFF5360B30D5E8950396E38A8C4.gr7.ap-south-1.eks.amazonaws.com') {
+                    withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' my-eks22', contextName: '', credentialsId: 'k8-prod-token', namespace: 'prod', serverUrl: 'https://F3212B4C5D11F57326344952ABDC8EB3.gr7.ap-south-1.eks.amazonaws.com']]) {
                         sh 'kubectl get pods -n prod'
                         sleep 20
                          sh 'kubectl get ingress -n prod'
